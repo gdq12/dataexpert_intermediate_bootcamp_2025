@@ -294,9 +294,9 @@
         (season_stats[cardinality(season_stats)]::season_stats).pts last_season,
         (season_stats[cardinality(season_stats)]::season_stats).pts/
             case 
-                when season_stats[1]::season_stats).pts = 0 
+                when (season_stats[1]::season_stats).pts = 0 
                     then 1 
-                else season_stats[1]::season_stats).pts end performance_coefficient
+                else (season_stats[1]::season_stats).pts end performance_coefficient
     from players 
     order by performance_coefficient desc 
     ```
