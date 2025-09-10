@@ -183,7 +183,7 @@
 1. create a new data type that deals more with scoring/classification 
 
     ```sql
-    create type scoring_class enum ('start', 'good', 'average', 'bad');
+    create type scoring_class as enum ('star', 'good', 'average', 'bad');
     ```
 
     + its an enumeration type 
