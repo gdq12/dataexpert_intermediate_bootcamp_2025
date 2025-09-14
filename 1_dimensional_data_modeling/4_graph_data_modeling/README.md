@@ -138,6 +138,14 @@
 
         - row_number method: if there is  dim that i different for each dup, then do are order by to decide which row to take from each partition 
 
+    + good to knows:
+
+        - can think of vertices as a mix of SCD and transactional info 
+
+        - game vertices can be thought of as transactional because they really only occur 1x and have their own metadata/metrics associated to that event 
+
+        - the player and team vertices are more like SCD. The player SCD is an aggregation of all the player stats throughout their career to date 
+
 3. populate the edges tbl 
 
     ```sql 
@@ -194,7 +202,7 @@
     from filtered pl1 
     join filtered pl2 on pl1.game_id = pl2.game_id
                     and pl1.player_id <> pl2.player_id
-    where pl1.player_id > pl2.player_id -- to verify there are no double edges, aka where plays with and share team with for a given combo dont appear 2x but just with player name ordered reverse
+    where pl1.player_id > pl2.player_id -- to verify there are no double edges, aka where plays with and share team with for a given combo dont appear 2x just due to player name ordered reverse
     group by 1,2,3
     )
     select 
@@ -211,6 +219,16 @@
     from aggregated 
     ;
     ```
+
+    + additional good to knows:
+
+        - edges can be SCD or transactions 
+        
+        - SCD: storing metrics/metadata from a relationship between 2 entities as an aggregation (rolling up multi events) provides the latest stats for that distinct combo of interaction
+
+        - transaction: samething as SCD rational except the timedate is included in the properties, BUT only if the interaction occured only 1x
+
+        - the limitation of the transaction - edge association is that then it would make the edge non-unique and violate the primary key restriction. Would say then the SCD is a bit more like a transaction is the interaction occured only 1x, but if it occured multiple time then its more like an SCD.
 
 </details>
 
@@ -267,3 +285,13 @@
     where e.object_type = 'player'::vertex_type
     ;
     ```
+
+    + additional notes: 
+        
+        - would say that the limitation to this analysis is that it is very difficult to implement time-dependent dimensions into the analysis since the concept of graph SQL is more to study relationships as oppposed to just entities
+        
+        - by default, vertices and edge calcs must be role ups since one can only hace 1 unque entry of each for the respective tables
+
+        - would say best this concept is best to observe stats based on the sum of the lastest data available
+
+        - for basketball stats time only really matters for tracking career progression but for relationship analysis guess not as much 
