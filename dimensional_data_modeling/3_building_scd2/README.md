@@ -1,6 +1,6 @@
 ### Get started with the lab
 
-1. Spin up the containers from set up [README](../1_setup_postgres/README.md)
+1. Spin up the containers from set up [README](../../setup_postgres/README.md)
 
     ```bash
     ~/git_repos/dataexpert_intermediate_bootcamp_2025/1_dimensional_data_modeling/1_setup_postgres
@@ -10,7 +10,7 @@
 
 2. Go to PGadmin UI: [http://localhost:5050](http://localhost:5050) 
 
-3. Go to server from the setup session. If starting from scratch follow setup instructions in [README](../1_setup_postgres/README.md)
+3. Go to server from the setup session. If starting from scratch follow setup instructions in [README](../../setup_postgres/README.md)
 
 <details>
     <summary>4. Tbls needed from lab1</summary>
