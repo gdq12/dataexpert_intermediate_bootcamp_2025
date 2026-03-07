@@ -1,35 +1,66 @@
-# Week 3 Spark Fundamentals training
+# Unit Testing PySpark Course Getting Started
 
-## Unit Testing PySpark Course Getting Started
+1. instructions to install spark in global environment 
 
-You need to install the required dependencies in `requirements.txt`
+    * install spark and python locally on [windows](https://discord.com/channels/1106357930443407391/1388500306207178824) or [mac](https://discord.com/channels/1106357930443407391/1388501607641124874).
 
-Running `pip install -r requirements.txt` will install them.
+    * pip install required libraries: `pip install -r requirements_unit_test.txt`
 
-> **_NOTE:_** Make sure to have spark set locally before running below.
-> Step-by-Step Guide to Install Spark and Python on Windows[https://discord.com/channels/1106357930443407391/1388500306207178824]
-> Step-by-Step Guide to Install Spark and Python on Mac[https://discord.com/channels/1106357930443407391/1388501607641124874]
+    * to verify successful installation: `python -m pytest`
 
+2. instructions to setup docker container instead
 
-Running the pytest is easy. You need to run `python -m pytest` and you're good to go!
+    * spin up the docker containers from [docker-compose.yaml](docker-compose.yaml) (via `make up`), since they are interdependent 
 
+    * get the container ID that is running docker image `tabulario/spark-iceberg` via `docker ps -a`
 
+    * enter the running container via terminal: `docker exec -ti containerID sh`
 
-## Spark Fundamentals and Advanced Spark Setup
+    * copy over needed files to the running docker container: 
 
-To launch the Spark and Iceberg Docker containers, run:
+        ```{bash}
+        docker cp requirements_unit_test.txt containerID:/
 
-```bash
-make up
-```
+        docker cp src/ containerID:/src/
+        ```
 
-Or `docker compose up` if you're on Windows!
+    * pip install needed libraries: `pip install -r requirements_unit_test.txt`
 
-Then, you should be able to access a Jupyter notebook at `localhost:8888`.
+    * to verify successful installation: `python -m pytest`
 
-The first notebook to be able to run is the `event_data_pyspark.ipynb` inside the `notebooks` folder.
+# Spark Fundamentals and Advanced Spark Setup
 
+1. To launch the Spark and Iceberg Docker containers, run in terminal: `make up`
 
-## ❓ Common Errors & Fixes
+2. access a Jupyter notebook at `localhost:8888`
 
-Fix for Spark OutOfMemoryError: Java heap space[https://discord.com/channels/1106357930443407391/1388501197341720666]
+## ❓ Fix for Spark OutOfMemoryError (Java headspace)
+
+Based on this [post](https://discord.com/channels/1106357930443407391/1388501197341720666). 
+
+1. adjust docker resource allocation:
+
+    * settings --> resource 
+
+    * increase memory limit (8GB --> 16GB)
+
+    * increase disk usage limit (to 128GB)
+
+2. update configs in the iceberg container
+
+    * enter running container in docker desktop go to running container: setup_spark>spark-iceberg
+
+    * go to files>opt>spark>conf> spark-defaults.conf
+
+    * rigt click the file to edit it
+
+    * add the following lines to the file at the bottom 
+
+        ```
+        spark.serializer                       org.apache.spark.serializer.KryoSerializer
+        spark.driver.memory                    8g
+        spark.memory.offHeap.enabled           true
+        spark.memory.offHeap.size              8g
+        ```
+
+    * when working within the notebooks: reduce bucket size to 4 or 8 from 16.
