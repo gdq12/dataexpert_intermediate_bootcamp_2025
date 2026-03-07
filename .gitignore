@@ -219,5 +219,4 @@ __marimo__/
 # keeping some spark material local only 
 setup_spark/data**
 setup_spark/notebooks**
-setup_spark/src**
 setup_spark/warehouse**
