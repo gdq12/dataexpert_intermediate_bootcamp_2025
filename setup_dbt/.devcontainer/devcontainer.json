@@ -1,0 +1,36 @@
+{
+	"name": "dataexpert-dbt",
+    "image": "dataexpert-dbt:latest",
+	"mounts": [
+		"source=${localEnv:SCRIPTS_REPO},target=/workspaces/dataexpert_course_material/setup_dbt/scripts,type=bind,consistency=cached"
+	],
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		8080,
+		8080
+	],
+	"customizations": {
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"innoverio.vscode-dbt-power-user",
+				"turntable.turntable-for-dbt-core"
+			]
+		}
+	},
+	// run environment vars
+	"runArgs": [
+		"--env-file",
+		".devcontainer/devcontainer.env"
+	]
+	// Uncomment the next line to run commands after the container is created.
+	// "postCreateCommand": "cat /etc/os-release",
+	// Configure tool-specific properties.
+	// "customizations": {},
+	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "devcontainer"
+}

@@ -220,3 +220,10 @@ __marimo__/
 setup_spark/data**
 setup_spark/notebooks**
 setup_spark/warehouse**
+
+# dbt local only
+**.user.yml
+**package-lock.yml
+**logs
+**dbt_packages
+**setup_dbt/scripts
