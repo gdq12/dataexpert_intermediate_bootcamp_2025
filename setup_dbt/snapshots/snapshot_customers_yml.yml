@@ -1,0 +1,10 @@
+snapshots:
+  - name: snapshot_customers_yml
+    relation: source('bootcamp', 'js_raw_customers')
+    config:
+      enabled: true
+      database: "{{ env_var('DBT_DB') }}"
+      schema: snapshots
+      strategy: timestamp
+      unique_key: id
+      updated_at: last_updated_dt

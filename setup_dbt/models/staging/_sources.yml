@@ -10,9 +10,9 @@ sources:
       - name: js_raw_customers
         freshness:
           warn_after:
-            count: 1
+            count: 365 # 1 year
             period: day
           error_after:
-            count: 7
+            count: 1095 # 3 years
             period: day
         loaded_at_field: "cast(last_updated_dt as timestamp)"

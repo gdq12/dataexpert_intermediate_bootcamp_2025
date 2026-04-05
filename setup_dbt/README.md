@@ -38,7 +38,9 @@
 
 ### Env Setup 
 
-* repo for learning material: [dbt-basics](https://github.com/DataExpert-io/dbt-basics)
+* repo for learning material: [dbt-basics](https://github.com/DataExpert-io/dbt-basics) (its been deprecated)
+
+* new location for repo learning material: [airlow-dbt-project/dbt_project](https://github.com/DataExpert-io/airflow-dbt-project/tree/main/dbt_project)
 
 * dbt labs page for [dbt installation](https://docs.getdbt.com/docs/local/install-dbt?version=1.12)
 
@@ -55,3 +57,9 @@
 * [dbt labs jaffle shop project](https://github.com/dbt-labs/jaffle-shop-classic), which has been depracated
 
 * [snowsight instructions](https://docs.snowflake.com/en/user-guide/data-load-web-ui) for loading data to snowflake
+
+### Other good to knows
+
+* [dbt_project_evaluator](https://hub.getdbt.com/dbt-labs/dbt_project_evaluator/latest/): does a sanity checkon how well the current state of the project aligns with dbt labs best practices
+
+* [db-checkpoint](https://github.com/dbt-checkpoint/dbt-checkpoint): another good project evaluator which goes into more detail testing on how well the project stands 

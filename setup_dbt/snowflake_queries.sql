@@ -16,10 +16,14 @@ create database dataexpert;
 
 create schema dataexpert.dbt_basic;
 
+create schema dataexpert.dbt_basic_snapshots;
+
 -- needed permission to load source data 
 grant usage on database dataexpert to role data_loader;
 
 grant usage on schema dataexpert.dbt_basic to role data_loader;
+
+grant usage on schema dataexpert.dbt_basic_snapshots to role dbt_role;
 
 grant create table on schema dataexpert.dbt_basic to role data_loader;
 
@@ -29,6 +33,8 @@ grant usage on database dataexpert to role dbt_role;
 grant usage on schema dataexpert.dbt_basic to role dbt_role;
 
 grant create table on schema dataexpert.dbt_basic to role dbt_role;
+
+grant create table on schema dataexpert.dbt_basic_snapshots to role dbt_role;
 
 grant create view on schema dataexpert.dbt_basic to role dbt_role;
 

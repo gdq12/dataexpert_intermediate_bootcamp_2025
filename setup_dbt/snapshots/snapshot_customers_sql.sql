@@ -1,7 +1,8 @@
-{% snapshot snapshot_customers %}
+{% snapshot snapshot_customers_sql %}
 
 {{
     config(
+      enabled=false,
       target_database=env_var('DBT_DB'),
       target_schema=env_var('DBT_SCHEMA'),
       unique_key='id',

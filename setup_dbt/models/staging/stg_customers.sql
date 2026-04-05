@@ -16,7 +16,7 @@ with
                 partition by id
                 order by dbt_valid_to desc
             ) as row_num
-        from {{ ref('snapshot_customers') }}
+        from {{ ref('snapshot_customers_yml') }}
     )
 
 select *
