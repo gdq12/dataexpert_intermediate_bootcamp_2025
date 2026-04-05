@@ -1,3 +1,11 @@
+{{
+    config(
+        materialized='incremental',
+        unique_key='id',
+        incremental_strategy='delete+insert'
+    )
+}}
+
 with
     staging as (
         select
@@ -10,3 +18,9 @@ with
 
 select *
 from staging
+
+{% if is_incremental() %}
+
+    where order_date > (select max(order_date) from {{ this }} )
+
+{% endif %}
