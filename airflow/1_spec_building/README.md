@@ -29,3 +29,9 @@ Here the color coding of the data sources are indicative on how easy (green) vs 
 - make stakeholders aware on the feasability and effort to help with convos in keeping vs excluding some requirements 
 
 - can also be a blue print for the future iterations 
+
+## Sources: Functional Data Engineering
+
+* [medium](https://maximebeauchemin.medium.com/functional-data-engineering-a-modern-paradigm-for-batch-data-processing-2327ec32c42a) article 
+
+* [YT](https://maximebeauchemin.medium.com/functional-data-engineering-a-modern-paradigm-for-batch-data-processing-2327ec32c42a) talk
