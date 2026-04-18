@@ -227,3 +227,6 @@ setup_spark/warehouse**
 **logs
 **dbt_packages
 **setup_dbt/scripts
+
+# keep data files local only
+**/postgres_data
