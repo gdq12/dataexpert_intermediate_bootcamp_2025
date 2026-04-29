@@ -41,6 +41,10 @@ The primary key for this dataset is (`actor_id`, `film_id`).
     
 5. **Incremental query for `actors_history_scd`:** Write an "incremental" query that combines the previous year's SCD data with new incoming data from the `actors` table.
 
+# Sources
+
+* fetched from [data-engineering-handbook](https://github.com/DataExpert-io/data-engineer-handbook/blob/main/intermediate-bootcamp/materials/1-dimensional-data-modeling/homework/homework.md) repo
+
 
 # Feddback Highlights 
 

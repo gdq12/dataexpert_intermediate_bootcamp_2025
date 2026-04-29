@@ -29,3 +29,7 @@ Construct the following eight queries:
   - day-by-day
 
 Please add these queries into a folder, zip them up and submit [here](https://bootcamp.techcreator.io)
+
+# Sources
+
+* fetched from [data-engineering-handbook](https://github.com/DataExpert-io/data-engineer-handbook/blob/main/intermediate-bootcamp/materials/2-fact-data-modeling/homework/homework.md) repo 
