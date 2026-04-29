@@ -51,3 +51,34 @@ grant create table on schema dataexpert.postgres_data to role data_loader;
 
 -- used snowflake UI to load tables to dataexpert.postgres_data:
 -- https://docs.snowflake.com/en/user-guide/data-load-web-ui
+
+------------------------------- setting up airflow creds for dag runs -------------------------------------------------
+create role airflow_role;
+
+create user AIRFLOW_USER password = 'AIRFLOW_PWD';
+
+grant role airflow_role to user airflow_user;
+
+create warehouse AIRFLOW_WAREHOUSE
+warehouse_size = 'X-SMALL'
+;
+
+grant usage on warehouse airflow_warehouse to role airflow_role;
+
+create schema airflow_basic;
+
+grant usage on database dataexpert to role airflow_role;
+
+grant usage on schema dataexpert.airflow_basic to role airflow_role;
+
+grant usage on schema dataexpert.postgres_data to role airflow_role;
+
+grant create table on schema dataexpert.airflow_basic to role airflow_role;
+
+grant select on all tables in schema dataexpert.airflow_basic to role airflow_role;
+
+grant select on all tables in schema dataexpert.postgres_data to role airflow_role;
+
+grant delete on all tables in schema dataexpert.airflow_basic to role airflow_role;
+
+alter user airflow_user set default_warehouse='AIRFLOW_WAREHOUSE';

@@ -14,6 +14,8 @@
 
 * post the git clone, need to roll back to a previous commit to fetch the pertinent material: `git checkout 8788a8a97049a98445d3b693bb2413a2594d50b2` (Nov 14, 2024 commit)
 
+* the main teaching directories being used are `dags` and `include`
+
 ### 3️⃣ Installing astro CLI
 
 ```
@@ -24,8 +26,6 @@ brew install astro
 ```
 
 ### 4️⃣ Inititating airflow
-
-**to note:** deployment requires `packages.txt`. Just created one here as a place holder
 
 * execute in terminal: `astro dev start`
 
@@ -38,6 +38,34 @@ brew install astro
 ### 5️⃣ Spin everything down at conclusion of work 
 
 * single command: `astro dev stop`
+
+### Good to knows about setup 
+
+* deployment requires `packages.txt`. Just created one here as a place holder
+
+* [.astro/config.yaml](.astro/config.yaml) is where configs are set for `astro dev start`, in particular at what ports for the web UI and postgres DB for logs are set
+
+### Handy commands
+
+```
+# initiate container for airflow runs 
+astro dev start 
+astro dev restart
+
+# spin everything back down 
+astro dev stop 
+
+#execute dag with specific execution dates 
+astro run dag_id --execution-date YYYY-MM-DD
+```
+
+### Good to knows about airflow vars 
+
+* `ds` = `execution-date`, this is the logical day that airflow uses to run the dag
+
+* `yesterday_ds` is 1 day before `ds`
+
+* variables defined during task session runs can be fetched and formatted into other string vars via single curly brackets `{ 'var_name' }`, but airflow native vars must be called upon with double curly brackets `{{ 'var_name' }}`
 
 ### Sources:
 
